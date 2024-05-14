@@ -4,7 +4,7 @@ import Home from "./routes/home"
 import Profile from "./routes/profile"
 import CreateAccount from "./routes/create-account"
 import Login from "./routes/login"
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 import reset from "styled-reset"
 import { useEffect, useState } from "react"
 import LoadingScreen from "./components/loading-screen"
@@ -50,7 +50,11 @@ body{
 }
 `
 
-
+const Wrapper = styled.div`
+  height:100%;
+  display:flex;
+  justify-content: center;
+  `
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,11 +66,11 @@ function App() {
     init();
   }, []);
   return (
-    <>
-    <GlobalStyles />
+    <Wrapper>
+      <GlobalStyles />
       {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
-    </>
-  )
+    </Wrapper>
+  );
 }
 
 export default App

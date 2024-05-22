@@ -4,6 +4,7 @@ import { auth } from "../../firebase";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth.components";
+import GithubButton from "../components/github-btn";
 
 
 export default function CreateAccount(){
@@ -52,6 +53,7 @@ export default function CreateAccount(){
             <Switcher>
                 Don't have an account? <Link to ="/create-account">Create one &rarr;</Link>
             </Switcher>
+            <GithubButton />
         </Wrapper>
         )
 }

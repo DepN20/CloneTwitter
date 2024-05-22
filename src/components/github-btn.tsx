@@ -1,4 +1,7 @@
+import { GithubAuthProvider, signInWithRedirect } from "firebase/auth";
 import styled from "styled-components"
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Button = styled.span`
     margin-top: 50px;
@@ -13,6 +16,7 @@ const Button = styled.span`
     gap: 5px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     `;
 
 const Logo = styled.img`
@@ -20,7 +24,17 @@ const Logo = styled.img`
     `;
 
 export default function GithubButton(){
-    return <Button>
+    const navigate = useNavigate();
+    const onClick = async() => {
+        try {
+            const provider = new GithubAuthProvider();
+            await signInWithRedirect(auth, provider);
+            navigate("/");
+        } catch(error){
+            console.error(error);
+        }
+    };
+    return <Button onClick={onClick}>
         <Logo src= "/github-mark.svg" />
         Continue with Github
     </Button>
